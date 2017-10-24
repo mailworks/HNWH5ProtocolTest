@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试网页</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1, target-densitydpi=medium-dpi, user-scalable=no">
+    <!--文件引入的方式加载JSBridge-->
+    <style>
+        .entry{
+        -webkit-padding-start: 30px;
+        }
+        .entry li {
+        line-height: 29px;
+        margin-left: -10px;
+        }
+        .entry li div{
+        margin-right: 10px;
+        padding-left: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background: #222222;
+        color: white;
+        word-break: break-all;
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+        line-height: 15px;
+        font-size: 10pt;
+        }
+        .entry li button{
+        margin-top: 5px;
+        width: 60px;
+        height: 35px;
+        color: #111111;
+        }
+    </style>
+
+    <script>
+    if (typeof(HnJsBridge) != "undefined" && typeof(HnJsBridge.linkBridge) != "undefined") {
+         HnJsBridge.linkBridge('HnJsBridge');
+    }
+    </script>
+</head>
+
+<body>
+<div class="blog-header">
+    <h3>HnJsBridge api测试</h3>
+</div>
+<ul class="entry">
+    <li>
+        获取deviceId(同步)<br/>
+        代码：<br/>
+        <div>
+            HnJsBridge.getData('deviceId');
+        </div>
+        <button onclick='HnJsBridge.doAction("toast",HnJsBridge.getData("deviceId",""));'>测试</button>
+    </li>
+    <li>
+        获取经纬度(同步)<br/>
+        代码：<br/>
+        <div>
+            HnJsBridge.getData('location');
+        </div>
+        <button onclick='HnJsBridge.doAction("toast",HnJsBridge.getData("location",""));'>测试</button>
+    </li>
+    <li>
+        获取经纬度(异步)<br/>
+        代码：<br/>
+        <div>
+            HnJsBridge.doAsyncTask('location');
+        </div>
+        <button onclick='HnJsBridge.doAsyncAction("location",function(text){HnJsBridge.doAction("toast",text)},"");'>测试</button>
+    </li>
+    <li>
+        设置title<br/>
+        代码：<br/>
+        <div>
+            HnJsBridge.putData('title');
+        </div>
+        <button onclick='HnJsBridge.putData("title","设置title");'>测试</button>
+    </li>
+    <li>
+        打电话<br/>
+        代码：<br/>
+        <div>
+            HnJsBridge.doAction('call');
+        </div>
+        <button onclick='HnJsBridge.doAction("call","{\"sourceFrom\":\"supplyDetails\",\"pageType\":\"call\",\"hnUserId\":\"934759\",\"supplyId\":\"334414\",\"mobile\":\"\"}");'>测试</button>
+    </li>
+    <li>
+        跳转原生界面<br/>
+        代码：<br/>
+        <div>
+            HnJsBridge.gotoNative('login');
+        </div>
+        <button onclick='HnJsBridge.gotoNative("login","");'>测试</button>
+    </li>
+
+    <script>
+
+    function showConsole(text,text1,text2,text3){
+        console.log(text);
+        console.log(text1);
+        console.log(text2);
+        console.log(text3);
+    }
+
+
+
+
+    </script>
+</ul>
+
+</body>
+</html>
